@@ -15,5 +15,11 @@ db.init_app(app)
 def index():
     return 'Validations lab'
 
+@app.route('/api/authors')
+def get_authors():
+    authors = Author.query.all()
+    response = [author.to_dict() for author in authors]
+    return make_response(response, 200)
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
